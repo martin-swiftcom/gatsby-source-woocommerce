@@ -465,6 +465,25 @@ const mapMediaToNodes = async ({
   );
 };
 
+
+/**
+ * Manually and with brute force, fix field types
+ *
+ * @param {array} nodes
+ *
+ * @return {array} Processed nodes
+ */
+const fixGraphqlTypes = (nodes) => {
+  return nodes.map((node) => {
+    if (node.acf) {
+      if (node.acf.selected_bases === false) {
+        node.acf.selected_bases = undefined
+      }
+    }
+    return node;
+  });
+};
+
 module.exports = {
   processNode,
   normaliseFieldName,
@@ -473,6 +492,7 @@ module.exports = {
   mapProductsToTags,
   mapRelatedProducts,
   mapGroupedProducts,
+  fixGraphqlTypes,
   asyncGetProductVariations,
   timeStampedLog,
 };

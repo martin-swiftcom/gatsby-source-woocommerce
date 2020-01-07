@@ -8,6 +8,7 @@ const {
   mapProductsToTags,
   mapRelatedProducts,
   mapGroupedProducts,
+  fixGraphqlTypes,
   asyncGetProductVariations,
   timeStampedLog,
 } = require("./helpers");
@@ -120,6 +121,7 @@ exports.sourceNodes = async (
     nodes = mapProductsToTags(nodes);
     nodes = mapRelatedProducts(nodes);
     nodes = mapGroupedProducts(nodes);
+    nodes = fixGraphqlTypes(nodes);
     nodes = nodes.map((node) => processNode(createContentDigest, node, verbose, startTime));
 
     nodes.forEach((node) => {
