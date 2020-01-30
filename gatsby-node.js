@@ -131,7 +131,7 @@ exports.sourceNodes = async (
     nodes = mapProductsToTags(nodes);
     nodes = mapRelatedProducts(nodes);
     nodes = mapGroupedProducts(nodes);
-    nodes = fixGraphqlTypes(nodes);
+    nodes = fixGraphqlTypes(nodes, createNodeId);
     nodes = mapNodeNormalizeMetadata(nodes);
 
     nodes = nodes.map((node) =>

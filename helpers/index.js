@@ -473,9 +473,12 @@ const mapMediaToNodes = async ({
  *
  * @return {array} Processed nodes
  */
-const fixGraphqlTypes = (nodes) => {
-  return nodes.map((node) => {
+const fixGraphqlTypes = (nodes, createNodeId) => {
+  return nodes.map((node, index) => {
     if (node.acf) {
+      if(!node.acf.id) {
+        node.acf.id = createNodeId(`node-acf-${index}`)
+      }
       if (node.acf.selected_bases === false) {
         node.acf.selected_bases = undefined
       }
